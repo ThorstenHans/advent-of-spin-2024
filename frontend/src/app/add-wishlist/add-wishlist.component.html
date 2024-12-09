@@ -1,0 +1,15 @@
+<h2>Add Wishlist</h2>
+
+<form (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" minlength="3" aria-describedby="nameHelp"
+            [(ngModel)]="name">
+        <div id="nameHelp" class="form-text">Provide your name</div>
+    </div>
+    <div class="mb-3">
+        <label for="items" class="form-label">Items</label>
+        <textarea class="form-control" id="items" rows="5" name="items" [(ngModel)]="items" minlength="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" ng>Submit</button>
+</form>

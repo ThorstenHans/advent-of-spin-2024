@@ -1,0 +1,17 @@
+<p>All Wishlists</p>
+
+<div class="list-group">
+    @for (wishlist of wishlists; track wishlist.name) {
+    <div class="list-group-item mb-3">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{wishlist.name}}</h5>
+
+        </div>
+        <p class="mb-1">
+            @for( item of wishlist.items; track item){
+        <div>{{item}}</div>
+        }
+        </p>
+    </div>
+    }
+</div>
