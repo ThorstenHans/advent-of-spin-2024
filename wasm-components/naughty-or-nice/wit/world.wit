@@ -1,0 +1,9 @@
+package components:naughty-or-nice@0.1.0;
+
+world naughty-or-nice-scorer {
+    export scorer;
+}
+
+interface scorer {
+    score: func(name: string) -> u8;
+}

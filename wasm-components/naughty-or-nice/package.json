@@ -1,0 +1,11 @@
+{
+  "name": "naughty-or-nice",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib.js",
+  "scripts": {
+    "build": "jco componentize lib.js --wit wit/world.wit --world-name naughty-or-nice-scorer --out naughty-or-nice.wasm"
+  },
+  "author": "Thorsten Hans",
+  "license": "ISC"
+}
