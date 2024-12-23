@@ -18,6 +18,10 @@ component = "api-wishlists"
 route = "/api/naughty-or-nice/..."
 component = "api-naughtyornice"
 
+[[trigger.http]]
+route = "/api/generate-gift-suggestions"
+component = "api-giftsuggestions"
+
 [component.frontend]
 source = { url = "https://github.com/fermyon/spin-fileserver/releases/download/v0.2.1/spin_static_fs.wasm", digest = "sha256:5f05b15f0f7cd353d390bc5ebffec7fe25c6a6d7a05b9366c86dcb1a346e9f0f" }
 files = [{ source = "app", destination = "/" }]
@@ -40,6 +44,7 @@ watch = ["src/**/*.rs", "Cargo.toml"]
 [component.api-naughtyornice]
 source = "api-naughtyornice/target/wasm32-wasi/release/api_naughtyornice.wasm"
 allowed_outbound_hosts = []
+
 [component.api-naughtyornice.build]
 command = "cargo build --target wasm32-wasi --release"
 workdir = "api-naughtyornice"
@@ -47,3 +52,17 @@ watch = ["src/**/*.rs", "Cargo.toml"]
 
 [component.api-naughtyornice.dependencies]
 "components:naughty-or-nice/scorer@0.1.0" = { path = "./wasm-components/naughty-or-nice/naughty-or-nice.wasm" }
+
+[component.api-giftsuggestions]
+source = "api-giftsuggestions/target/wasm32-wasi/release/api_giftsuggestions.wasm"
+allowed_outbound_hosts = []
+ai_models = ["llama2-chat"]
+dependencies_inherit_configuration = true
+
+[component.api-giftsuggestions.build]
+command = "cargo build --target wasm32-wasi --release"
+workdir = "api-giftsuggestions"
+watch = ["src/**/*.rs", "Cargo.toml"]
+
+[component.api-giftsuggestions.dependencies]
+"components:advent-of-spin/generator@0.1.0" = { path = "./wasm-components/gift-suggestion-component/gift-suggestions-generator.wasm" }
